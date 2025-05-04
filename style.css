@@ -90,11 +90,17 @@ table {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
+
 .text{
     font-size: 100px;
     position: absolute;
     color:#b2abab11;
 top:80%;
+}
+
+.text:hover {
+    color:#b2ababa7;
 }
 
 /* .scroll-space {
