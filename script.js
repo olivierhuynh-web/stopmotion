@@ -1,54 +1,42 @@
+// Enregistrement du plugin
 gsap.registerPlugin(ScrollTrigger);
 
-// Initialise Lenis
-const lenis = new Lenis({
-  duration: 1.2,
-  smooth: true,
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  smoothTouch: false,
-});
+// Configuration
+const totalPhotos = 100;
+const cycleLength = 10000;
+const imageEl = document.querySelector('.centered-image');
 
-// Boucle d'animation avec Lenis + update GSAP + update image
-function raf(time) {
-  lenis.raf(time);
-  updateImage();
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-// Scroll infini avec ScrollTrigger
+// ScrollTrigger : Pin de l'image
 ScrollTrigger.create({
   trigger: '.image-container',
   start: 'top top',
-  end: '+=10000',
+  end: `+=${cycleLength}`,
   pin: true,
   pinSpacing: true,
 });
 
-// Configuration
-const totalPhotos = 100;
-const imageEl = document.querySelector('.centered-image');
-const cycleLength = 10000;
-
+// Positionner au milieu du scroll pour éviter les bornes
 window.scrollTo(0, cycleLength / 2);
 
-// Image en fonction du scroll
+// Fonction de mise à jour d'image
 function updateImage() {
   const scrollTop = window.scrollY;
   const virtualScroll = scrollTop % cycleLength;
   const imageIndex =
-    (Math.floor(virtualScroll / (cycleLength / totalPhotos)) % totalPhotos) + 1;
+    Math.floor(virtualScroll / (cycleLength / totalPhotos)) + 1;
   imageEl.src = `public/${imageIndex}.png`;
+  requestAnimationFrame(updateImage);
 }
 
-// Scroll infini
+updateImage();
+
+// Scroll infini (rebouclage quand on atteint les extrêmes)
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
 
-  if (scrollTop <= 10) {
+  if (scrollTop <= 5) {
     window.scrollTo(0, cycleLength / 2 + 1);
-  } else if (scrollTop >= cycleLength - 10) {
+  } else if (scrollTop >= cycleLength - 5) {
     window.scrollTo(0, cycleLength / 2 - 1);
   }
 });
