@@ -4,7 +4,7 @@
 */
 @font-face {
     font-family: 'PPNeueBit';
-    src: url('./fonts/PPNeueBit-Bold.otf') format('opentype');
+    src: url('./public/fonts/PPNeueBit-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
