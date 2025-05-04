@@ -2,7 +2,14 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+@font-face {
+    font-family: 'PPNeueBit';
+    src: url('./fonts/PPNeueBit-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -43,6 +50,8 @@ body {
     justify-content: flex-start;
     align-items: center;
     background-color: #f0f0f0;
+    font-family: 'PPNeueBit', sans-serif;
+
 }
 
 /* Masquer la barre de défilement pour Chrome, Safari et Opera */
@@ -79,6 +88,13 @@ table {
     width: 50%;
     height: 60%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text{
+    font-size: 100px;
+    position: absolute;
+    color:#b2abab11;
+top:80%;
 }
 
 /* .scroll-space {

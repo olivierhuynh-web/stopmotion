@@ -1,31 +1,54 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// Pin de l’image
+// Initialise Lenis
+const lenis = new Lenis({
+  duration: 1.2,
+  smooth: true,
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  smoothTouch: false,
+});
+
+// Boucle d'animation avec Lenis + update GSAP + update image
+function raf(time) {
+  lenis.raf(time);
+  updateImage();
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// Scroll infini avec ScrollTrigger
 ScrollTrigger.create({
   trigger: '.image-container',
   start: 'top top',
-  end: '+=10000', // Longue zone scrollable
+  end: '+=10000',
   pin: true,
   pinSpacing: true,
 });
 
-// Paramètres
+// Configuration
 const totalPhotos = 100;
 const imageEl = document.querySelector('.centered-image');
+const cycleLength = 10000;
 
-// Fonction pour changer l’image selon la position de scroll
+window.scrollTo(0, cycleLength / 2);
+
+// Image en fonction du scroll
 function updateImage() {
   const scrollTop = window.scrollY;
-  const imageIndex = (Math.floor(scrollTop / 10) % totalPhotos) + 1;
+  const virtualScroll = scrollTop % cycleLength;
+  const imageIndex =
+    (Math.floor(virtualScroll / (cycleLength / totalPhotos)) % totalPhotos) + 1;
   imageEl.src = `public/${imageIndex}.png`;
-  requestAnimationFrame(updateImage);
 }
 
+// Scroll infini
 window.addEventListener('scroll', () => {
-  const max = document.body.scrollHeight - window.innerHeight;
-  if (window.scrollY >= max - 5) {
-    window.scrollTo(0, 0); // Revenir en haut automatiquement
+  const scrollTop = window.scrollY;
+
+  if (scrollTop <= 10) {
+    window.scrollTo(0, cycleLength / 2 + 1);
+  } else if (scrollTop >= cycleLength - 10) {
+    window.scrollTo(0, cycleLength / 2 - 1);
   }
 });
-
-updateImage();
