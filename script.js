@@ -24,7 +24,7 @@ function updateImage() {
   const virtualScroll = scrollTop % cycleLength;
   const imageIndex =
     Math.floor(virtualScroll / (cycleLength / totalPhotos)) + 1;
-  imageEl.src = `/${imageIndex}.png`;
+  imageEl.src = `./public/${imageIndex}.png`;
   requestAnimationFrame(updateImage);
 }
 
