@@ -106,3 +106,12 @@ top:80%;
 /* .scroll-space {
     height: 10000px;
   } */
+
+
+@media (max-width: 1025px) {
+    .centered-image {
+        height: auto ;
+        width: 80vw;
+        /* border: 1px solid red; */
+    }
+}
