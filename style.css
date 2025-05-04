@@ -108,10 +108,10 @@ top:80%;
   } */
 
 
-@media (max-width: 1025px) {
+@media (max-width: 1050px) {
     .centered-image {
         height: auto ;
-        width: 40dvh;
+        width: 80vw;
         /* border: 1px solid red; */
     }
 }
