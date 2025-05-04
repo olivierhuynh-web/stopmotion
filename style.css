@@ -111,7 +111,7 @@ top:80%;
 @media (max-width: 1025px) {
     .centered-image {
         height: auto ;
-        width: 80vw;
+        width: 80lvh;
         /* border: 1px solid red; */
     }
 }
