@@ -24,7 +24,17 @@ function updateImage() {
   const virtualScroll = scrollTop % cycleLength;
   const imageIndex =
     Math.floor(virtualScroll / (cycleLength / totalPhotos)) + 1;
-  imageEl.src = `./public/${imageIndex}.png`;
+
+  // Vérifier si l'image existe avant de la charger
+  const img = new Image();
+  img.onload = function () {
+    imageEl.src = `./public/${imageIndex}.png`;
+  };
+  img.onerror = function () {
+    console.log(`Image ${imageIndex}.png non trouvée`);
+  };
+  img.src = `./public/${imageIndex}.png`;
+
   requestAnimationFrame(updateImage);
 }
 
