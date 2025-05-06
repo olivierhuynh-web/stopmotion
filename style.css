@@ -103,11 +103,6 @@ top:80%;
     color:#b2ababa7;
 }
 
-/* .scroll-space {
-    height: 10000px;
-  } */
-
-
 @media (max-width: 1050px) {
     .centered-image {
         height: auto ;

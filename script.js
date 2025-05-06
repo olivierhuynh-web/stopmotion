@@ -41,6 +41,7 @@ function updateImage() {
 updateImage();
 
 // Scroll infini (rebouclage quand on atteint les extrêmes)
+
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
 
